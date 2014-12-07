@@ -63,7 +63,7 @@ template < class T >
 T* TableSortedList<T>::tableRetrieve(String* sk)
 {
    T* item = sldl -> get(sk);
-   return item; 
+   if (item != NULL) return item; 
 }
 
 template < class T >
@@ -77,12 +77,12 @@ template < class T >
 bool TableSortedList<T>::tableRemove(String* search_key)
 {
    T* item = tableRetrieve(search_key);
-   if (item == NULL)
+   if (item != NULL)
    {
-      bool removeItem = sldl -> remove(search_key);
-      return removeItem;
+      sldl -> remove(search_key);
+      return true;
    }
-   return item;
+   return false;
 }
 
 template < class T >
